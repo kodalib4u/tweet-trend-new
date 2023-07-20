@@ -14,6 +14,13 @@ pipeline {
                 sh 'mvn clean deploy'
             }
         }
+        stage('Test code') {
+            steps {
+                echo ".........Unit Test Started......."
+                sh 'mvn surefire-report:report'
+                echo ".........Unit Test completed......"
+            }
+        }
         stage('SonarQube analysis') {
            environment {
             scannerHome = tool 'kodalib4u-sonarqube-scanner'

@@ -1,3 +1,4 @@
+def registry = 'https://kodalib4u.jfrog.io'
 pipeline
 {
     agent 
@@ -53,7 +54,7 @@ pipeline
              }
            }
         }
-        def registry = 'https://kodalib4u.jfrog.io'
+        
         stage("Jar Publish") 
         {
             steps {

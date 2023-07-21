@@ -66,7 +66,7 @@ pipeline
                               "files": [
                                 {
                                   "pattern": "jarstaging/(*)",
-                                  "target": "kodalib4u-libs-release-local/{1}",
+                                  "target": "libs-release-local-libs-release-local/{1}",
                                   "flat": "false",
                                   "props" : "${properties}",
                                   "exclusions": [ "*.sha1", "*.md5"]

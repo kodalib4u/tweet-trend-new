@@ -1,3 +1,5 @@
+def imageName = 'kodalib4u.jfrog.io/kodalib4u-docker/ttrend'
+def version   = '2.1.2'
 def registry = 'https://kodalib4u.jfrog.io'
 pipeline
 {
@@ -66,7 +68,7 @@ pipeline
                               "files": [
                                 {
                                   "pattern": "jarstaging/(*)",
-                                  "target": "libs-release-local-libs-release-local/{1}",
+                                  "target": "kodalib4u-libs-release-local/{1}",
                                   "flat": "false",
                                   "props" : "${properties}",
                                   "exclusions": [ "*.sha1", "*.md5"]
@@ -80,7 +82,35 @@ pipeline
                 
                 }
             }   
-        }   
+        }
+        stage(" Docker Build ")
+        {
+        steps 
+           {
+            script 
+                {
+            echo '<--------------- Docker Build Started --------------->'
+            app = docker. build(imageName+":"+version)
+            echo '<--------------- Docker Build Ends --------------->'
+                }
+            }
+        }
+
+        stage (" Docker Publish ")
+        {
+         steps 
+           {
+            script 
+               {
+               echo '<--------------- Docker Publish Started --------------->'  
+                docker.withRegistry(registry, 'artifacts-cred')
+                {
+                    app.push()
+                }    
+               echo '<--------------- Docker Publish Ended --------------->'  
+                } 
+           }
+       }   
     }
 }
 

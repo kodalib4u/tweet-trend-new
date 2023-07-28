@@ -1,12 +1,6 @@
-def imageName = 'kodalib4u.jfrog.io/kodalib4u-docker-local/ttrend'
-def version   = '2.1.2'
-def registry = 'https://kodalib4u.jfrog.io'
-pipeline
-{
-    agent 
-    {
-        node 
-        {
+pipeline {
+    agent {
+        node {
            label "maven" 
         }
        
@@ -56,35 +50,6 @@ pipeline
              }
            }
         }
-              
-        stage(" Docker Build ")
-        {
-        steps 
-           {
-            script 
-                {
-            echo '<--------------- Docker Build Started --------------->'
-            app = docker. build(imageName+":"+version)
-            echo '<--------------- Docker Build Ends --------------->'
-                }
-            }
-        }
-
-        stage (" Docker Publish ")
-        {
-         steps 
-           {
-            script 
-               {
-               echo '<--------------- Docker Publish Started--------------->'  
-                docker.withRegistry(registry, 'artifacts-cred')
-                {
-                    app.push()
-                }    
-               echo '<--------------- Docker Publish Ended --------------->'  
-                } 
-           }
-       }   
     }
 }
 

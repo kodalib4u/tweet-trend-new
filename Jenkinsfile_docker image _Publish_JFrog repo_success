@@ -84,16 +84,7 @@ pipeline
                echo '<--------------- Docker Publish Ended --------------->'  
                 } 
            }
-       }
-       stage('Deploy Application in K8s Cluster') 
-       {
-         steps 
-           {
-              echo ".........Executing K8s Manifest files......."
-                sh './deploy.sh'
-              echo ".........Executing K8s Manifest files Ended....."
-           }
-        }
+       }   
     }
 }
 

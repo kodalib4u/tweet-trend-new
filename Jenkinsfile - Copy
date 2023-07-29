@@ -85,7 +85,7 @@ pipeline
                 } 
            }
        }
-       stage('Deploy Application in K8s Cluster') 
+       stage('Deploy Application in K8s Cluster using Helm Charts') 
        {
          steps 
            {

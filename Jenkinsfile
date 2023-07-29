@@ -85,13 +85,13 @@ pipeline
                 } 
            }
        }
-       stage('Deploy Application in K8s Cluster') 
+       stage('Deploy Application in K8s Cluster using Helm Charts') 
        {
          steps 
            {
-              echo ".........Executing K8s Manifest files......."
-                sh './deploy.sh'
-              echo ".........Executing K8s Manifest files Ended....."
+              echo '<--------------- Helm Deploy Started --------------->'
+	                     sh 'helm install ttrend ttrend-0.1.0.tgz'
+               echo '<--------------- Helm deploy Ends --------------->'
            }
         }
     }
